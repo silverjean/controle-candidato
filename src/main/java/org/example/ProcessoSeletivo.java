@@ -1,15 +1,60 @@
 package org.example;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProcessoSeletivo {
     public static void main(String[] args) {
         System.out.println("Processo seletivo");
 
-        analisarCandidatos(1900.0);
-        analisarCandidatos(2200.0);
-        analisarCandidatos(2000.0);
+        String[] candidatos = {"FELIPE", "MARCIA", "JULIA", "PAULO", "AUGUSTO"};
+
+        for (String candidato: candidatos) {
+
+        }
     }
+
+    static void entrandoEmContato(String candidato) {
+        int tentativasRealizadas = 1;
+        boolean continuaTentando = true;
+        boolean atendeu = false;
+
+        do {
+            atendeu = atender();
+            continuaTentando = !atendeu;
+            if (continuaTentando)
+                tentativasRealizadas++;
+            else
+                System.out.println("Contato realizado com sucesso.");
+        } while (continuaTentando && tentativasRealizadas < 3);
+
+        if (atendeu)
+            System.out.println("Conseguimos contato com o " + candidato + " na " + tentativasRealizadas + "ª realizada");
+        else
+            System.out.println("Não conseguimos contato com o candidato.");
+    }
+
+    static boolean atender() {
+        return new Random().nextInt(3) == 1;
+    }
+
+    static void imprimirSelecionados() {
+        String[] candidatos = {"FELIPE", "MARCIA", "JULIA", "PAULO", "AUGUSTO"};
+
+        System.out.println("Imprimindo a lista de candidatos, informando o índice do elemento");
+
+        for (int i = 0; i < candidatos.length; i++) {
+            System.out.println("O candidato de número " + (i+1) + " é " + candidatos[i]);
+        }
+
+        System.out.println("Forma abreviada de interação for each");
+
+        for(String candidato: candidatos) {
+            System.out.println("O candidadto selecionado foi: " + candidato);
+        }
+
+    }
+
 
     final static double salarioBase = 2000.0;
 
